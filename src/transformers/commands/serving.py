@@ -961,6 +961,7 @@ class ServeCommand(BaseTransformersCLICommand):
 
         generation_kwargs = {
             **inputs,
+            "tokenizer": processor,
             "streamer": generation_streamer,
             "generation_config": generation_config,
             "return_dict_in_generate": True,
