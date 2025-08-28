@@ -129,6 +129,7 @@ if serve_dependencies_available:
         """
 
         generation_config: str
+        chat_template_kwargs: dict
 
     class TransformersTranscriptionCreateParams(TranscriptionCreateParamsBase, total=False):
         """
@@ -939,6 +940,7 @@ class ServeCommand(BaseTransformersCLICommand):
             return_tensors="pt",
             return_dict=True,
             tokenize=True,
+            **req.get("chat_template_kwargs", {})
         )
         inputs = inputs.to(model.device)
         request_id = req.get("request_id", "req_0")
